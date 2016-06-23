@@ -23,6 +23,11 @@
   tags:
     - gluster
 
+- name: Enable quorum to avoid split-brains
+  gluster_volume:
+    name: all
+    options: '{cluster.server-quorum-ratio: 67%, cluster.server-quorum-type: server}'
+
 - name: Ensure that `brick` directories exist
   file:
     path: "{{ brick_path}}/{{ item }}"
